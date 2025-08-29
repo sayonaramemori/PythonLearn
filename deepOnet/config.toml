@@ -1,0 +1,33 @@
+# Application metadata
+[app]
+name = "MyCoolApp"
+version = "1.0.0"
+
+# 0.02 0.13
+[train]
+lr = 1e-3
+batchSize = 128
+decayStepSize = 100
+decayGamma = 0.98
+
+# 0.05 0.29
+[train3]
+lr = 1e-3
+batchSize = 128
+decayStepSize = 100
+decayGamma = 0.97
+
+# 0.3 0.6
+[train_v2]
+lr = 1e-3
+batchSize = 128
+decayStepSize = 100
+decayGamma = 0.965
+
+
+# Logging options
+[log]
+on = 1
+dir = "logs"
+legend_train = "Train MSE Loss with se"
+legend_test = "Test MSE Loss with se"

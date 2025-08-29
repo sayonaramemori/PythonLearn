@@ -22,7 +22,13 @@ print(a/b)  # Answer is float
 print(a//b) # 
 c = a**b
 
+0.3 == 0.1 +0.2 # False
+import decimal as dl
+dl.Decimal('0.1') + dl.Decimal('0.2') == dl.Decimal('0.3')
 ```
+
+### Bool  
+
 
 ### Control flow  
 ```python
@@ -60,7 +66,7 @@ str2 = 'cpp'
 # concat  
 str3 = str1 + str2
 
-# multiple
+# multiply
 print(3 * str1)
 
 # contain chars  
@@ -240,6 +246,11 @@ funck(name='java',age=18)
 > Name-Lookup behaviours like cpp  
 > Use `global` to declare a global variable in local scope  
 
+### Closure  
+### Decorator  
+![dec](./img/dec.jpg)
+
+
 ### Lambda & Unpack  
 ```python
 add = lambda a,b:a+b
@@ -292,7 +303,21 @@ p1 = Person(19,'java')
 # Add a new attribute for this instance  
 p1.gender = 'male'
 
+# show member:value
+p1.__dict__
+
 class Female(Person):
     # Placeholder
     pass
+```
+
+### Class Operator  
+```Py
+class Test:
+    def __add__(self,other):
+        pass
+    def __getitem__(self,index):
+        pass
+t = Test()
+t[2]
 ```
