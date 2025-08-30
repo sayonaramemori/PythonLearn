@@ -61,7 +61,8 @@ class DeepONet(nn.Module):
 
 if __name__ == "__main__":
     torch.set_default_dtype(torch.float64)
-    device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
+    # device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
+    device = torch.device('cpu')
     # print(test._modules['branch'].weight)
     # print(test._modules['trunk'])
     fd = FlotationDataset(train=True)
@@ -69,11 +70,11 @@ if __name__ == "__main__":
     train_dataloader = DataLoader(fd,batch_size=batchSize,shuffle=True)
     test_dataloader = DataLoader(fd_test,batch_size=512,shuffle=True)
     test_data_size = len(fd_test)
-    for i in range(10):
+    for i in range(5):
         donn = DeepONet(3,1).to(device) # print(donn._modules)
         loss_fn = nn.MSELoss().to(device)
         optimizer = optim.Adam(donn.parameters(),lr=lr)
-        decayGamma = 0.96+i*0.003
+        decayGamma = 0.99+i*0.0016
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=decayStepSize, gamma=decayGamma)
         writer = SummaryWriter(log_dir)
 
