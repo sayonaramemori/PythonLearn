@@ -27,7 +27,7 @@ decayGamma = 0.965
 
 # Logging options
 [log]
-on = 1
+on = 0
 dir = "logs"
 legend_train = "Train MSE Loss with se"
 legend_test = "Test MSE Loss with se"
