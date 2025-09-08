@@ -10,14 +10,9 @@ dde.model.optimizers.config.set_LBFGS_options(maxiter=990000);
 
 Length = 1.0
 Vel = 1.0
-Re = 100.0
 # Define the domain
 domain = dde.geometry.Rectangle([0, 0], [Length, Length])  # 2D domain (0, 1) x (0, 1)
 
-# timedomain = dde.geometry.TimeDomain(0, 30)  # Time domain [0, 1]
-# domain = dde.geometry.GeometryXTime(domain,timedomain)
-# Boundary conditions
-# Input is x,y,t
 def boundary_up(x, on_boundary):
     return on_boundary and dde.utils.isclose(x[1],Length)
 def boundary_not_up(x, on_boundary):
@@ -84,6 +79,7 @@ model.compile("L-BFGS")
 checkpointer = dde.callbacks.ModelCheckpoint( "./model/top_cover_model.ckpt", verbose=1, save_better_only=True)
 pde_resampler = dde.callbacks.PDEPointResampler(period=100)
 losshistory, train_state = model.train(callbacks=[checkpointer,pde_resampler])
-from mailmsg import send_over_msg
-send_over_msg()
+
+from tool_box import mailmsg
+mailmsg.send_over_msg()
 dde.saveplot(losshistory, train_state, issave=True, isplot=True)
